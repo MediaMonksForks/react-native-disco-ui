@@ -1,5 +1,7 @@
-import * as React from 'react'
-import { Button, NativeModules, StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import { NativeModules, StyleSheet, Text, View } from 'react-native'
+
+import Button from './components/Button'
 
 export const addOne = (input: number) => input + 1
 
@@ -9,7 +11,7 @@ export const Counter = () => {
   return (
     <View style={styles.container}>
       <Text>You pressed {count} times</Text>
-      <Button onPress={() => setCount(addOne(count))} title='Press Me' />
+      <Button onPress={() => setCount(addOne(count))} title={'Press Me'} />
     </View>
   )
 }
@@ -17,6 +19,7 @@ export const Counter = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
     height: 200,
