@@ -50,7 +50,7 @@ const Button = ({
           ? onButtonPressedStyle(pressed)
           : defaultButtonPressedStyle(pressed)),
       },
-      { opacity: isLoading || disabled ? 0.5 : undefined },
+      isLoading || disabled ? { opacity: 0.5 } : {},
       style ? style : styles.container,
     ],
     [disabled, isLoading, onButtonPressedStyle, style]
