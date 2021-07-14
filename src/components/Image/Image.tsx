@@ -21,6 +21,9 @@ interface Props {
   onError?: (error: NativeSyntheticEvent<ImageErrorEventData>) => void;
   renderRetryButton?: () => void;
   onRetryPress?: () => void;
+  shimmerColor?: string;
+  shimmerBackground?: string;
+  renderLoadIndicator?: () => void;
 }
 
 const Image = ({
@@ -31,6 +34,9 @@ const Image = ({
   onLoad,
   renderRetryButton,
   onRetryPress,
+  shimmerColor,
+  shimmerBackground,
+  renderLoadIndicator,
   ...props
 }: Props) => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
@@ -67,7 +73,16 @@ const Image = ({
         onLoad={onImageLoad}
         {...props}
       />
-      {showShimmer && <ImageShimmer width={width} height={height} />}
+      {showShimmer &&
+        (renderLoadIndicator ? (
+          renderLoadIndicator()
+        ) : (
+          <ImageShimmer
+            color={shimmerColor}
+            backgroundColor={shimmerBackground}
+            {...{ width, height }}
+          />
+        ))}
       {hasError &&
         (renderRetryButton ? (
           renderRetryButton()
