@@ -9,7 +9,6 @@ const App = () => {
     <View style={styles.container}>
       <Image
         style={styles.image}
-        isLoading={true}
         source={{
           uri: `https://randomuser.me/api/portraits/lego/${imageIndex}.jpg`,
         }}
@@ -18,7 +17,7 @@ const App = () => {
         title={'Change image'}
         style={styles.button}
         titleStyle={styles.buttonText}
-        onPress={() => setImageIndex(imageIndex + 1)}
+        onPress={() => setImageIndex(imageIndex >= 8 ? 0 : imageIndex + 1)}
       />
     </View>
   );

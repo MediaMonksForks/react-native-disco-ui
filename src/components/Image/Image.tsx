@@ -1,5 +1,13 @@
-import React, { useCallback, useState } from 'react';
-import { Image as RNImage, StyleSheet, View, ViewStyle } from 'react-native';
+import React, { useCallback, useMemo, useState } from 'react';
+import {
+  Image as RNImage,
+  ImageErrorEventData,
+  ImageLoadEventData,
+  NativeSyntheticEvent,
+  StyleSheet,
+  View,
+  ViewStyle,
+} from 'react-native';
 
 import Button from '../Button';
 import styles, { DEFAULT_IMAGE_SIZE } from './image.style';
@@ -9,19 +17,44 @@ interface Props {
   source: number | { uri: string };
   style?: ViewStyle;
   isLoading: boolean;
+  onLoad?: (event: NativeSyntheticEvent<ImageLoadEventData>) => void;
+  onError?: (error: NativeSyntheticEvent<ImageErrorEventData>) => void;
+  renderRetryButton?: () => void;
+  onRetryPress?: () => void;
 }
 
-const Image = ({ source, style, isLoading }: Props) => {
+const Image = ({
+  source,
+  style,
+  isLoading,
+  onError,
+  onLoad,
+  renderRetryButton,
+  onRetryPress,
+  ...props
+}: Props) => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [hasError, setHasError] = useState<boolean>(false);
 
-  const flattenedStyles = StyleSheet.flatten(style);
+  const flattenedStyles = useMemo(() => StyleSheet.flatten(style), [style]);
   const width = (flattenedStyles?.width as number) || DEFAULT_IMAGE_SIZE;
   const height = (flattenedStyles?.width as number) || DEFAULT_IMAGE_SIZE;
 
-  const onError = useCallback(() => {
-    setHasError(true);
-  }, []);
+  const onImageError = useCallback(
+    (error: NativeSyntheticEvent<ImageErrorEventData>) => {
+      setHasError(true);
+      onError && onError(error);
+    },
+    [onError],
+  );
+
+  const onImageLoad = useCallback(
+    (event: NativeSyntheticEvent<ImageLoadEventData>) => {
+      setIsLoaded(true);
+      onLoad && onLoad(event);
+    },
+    [onLoad],
+  );
 
   const showShimmer = (!isLoaded && !hasError) || isLoading;
 
@@ -30,11 +63,21 @@ const Image = ({ source, style, isLoading }: Props) => {
       <RNImage
         style={{ width, height }}
         source={source}
-        onError={onError}
-        onLoad={() => setIsLoaded(true)}
+        onError={onImageError}
+        onLoad={onImageLoad}
+        {...props}
       />
       {showShimmer && <ImageShimmer width={width} height={height} />}
-      {hasError && <Button style={styles.retryButton} title={'Error: Tap to retry'} />}
+      {hasError &&
+        (renderRetryButton ? (
+          renderRetryButton()
+        ) : (
+          <Button
+            onPress={onRetryPress && onRetryPress()}
+            style={styles.retryButton}
+            title={'Error: Tap to retry'}
+          />
+        ))}
     </View>
   );
 };
