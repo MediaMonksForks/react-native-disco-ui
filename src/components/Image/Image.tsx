@@ -38,7 +38,7 @@ const Image = ({
 
   const flattenedStyles = useMemo(() => StyleSheet.flatten(style), [style]);
   const width = (flattenedStyles?.width as number) || DEFAULT_IMAGE_SIZE;
-  const height = (flattenedStyles?.width as number) || DEFAULT_IMAGE_SIZE;
+  const height = (flattenedStyles?.height as number) || DEFAULT_IMAGE_SIZE;
 
   const onImageError = useCallback(
     (error: NativeSyntheticEvent<ImageErrorEventData>) => {
