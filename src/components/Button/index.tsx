@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback } from 'react';
 import {
   Pressable,
   PressableAndroidRippleConfig,
@@ -7,28 +7,28 @@ import {
   TextProps,
   TextStyle,
   ViewStyle,
-} from 'react-native'
+} from 'react-native';
 
-import styles from './button.style'
+import styles from './button.style';
 
 interface Props extends PressableProps {
-  style: ViewStyle
-  title?: string
-  titleProps?: TextProps
-  enableRipple?: boolean
-  disabled?: boolean
-  isLoading?: boolean
-  androidRipple?: null | PressableAndroidRippleConfig | undefined
-  onButtonPressedStyle?: (pressed: boolean) => ViewStyle
-  titleStyle?: TextStyle
-  children?: React.ReactNode
+  style: ViewStyle;
+  title?: string;
+  titleProps?: TextProps;
+  enableRipple?: boolean;
+  disabled?: boolean;
+  isLoading?: boolean;
+  androidRipple?: null | PressableAndroidRippleConfig | undefined;
+  onButtonPressedStyle?: (pressed: boolean) => ViewStyle;
+  titleStyle?: TextStyle;
+  children?: React.ReactNode;
 }
 
 const defaultButtonPressedStyle = (pressed: boolean) => ({
   opacity: pressed ? 0.7 : 1,
-})
+});
 
-const defaultRipple = { borderless: false, color: '#FFFFFF' }
+const defaultRipple = { borderless: false, color: '#FFFFFF' };
 
 const Button = ({
   style,
@@ -53,8 +53,8 @@ const Button = ({
       isLoading || disabled ? { opacity: 0.5 } : {},
       style ? style : styles.container,
     ],
-    [disabled, isLoading, onButtonPressedStyle, style]
-  )
+    [disabled, isLoading, onButtonPressedStyle, style],
+  );
 
   return (
     <Pressable
@@ -72,7 +72,7 @@ const Button = ({
         {children && children}
       </>
     </Pressable>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;
