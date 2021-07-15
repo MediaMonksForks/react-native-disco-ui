@@ -88,7 +88,7 @@ const Image = ({
           renderRetryButton()
         ) : (
           <Button
-            onPress={onRetryPress && onRetryPress()}
+            onPress={() => onRetryPress && onRetryPress()}
             style={styles.retryButton}
             title={'Error: Tap to retry'}
           />
