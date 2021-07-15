@@ -3,6 +3,8 @@ import {
   Image as RNImage,
   ImageErrorEventData,
   ImageLoadEventData,
+  ImageResizeMode,
+  ImageStyle,
   NativeSyntheticEvent,
   StyleSheet,
   View,
@@ -15,8 +17,8 @@ import ImageShimmer from './ImageShimmer';
 
 interface Props {
   source: number | { uri: string };
-  style?: ViewStyle;
-  isLoading: boolean;
+  style?: ViewStyle & ImageStyle;
+  isLoading?: boolean;
   onLoad?: (event: NativeSyntheticEvent<ImageLoadEventData>) => void;
   onError?: (error: NativeSyntheticEvent<ImageErrorEventData>) => void;
   renderRetryButton?: () => void;
@@ -45,6 +47,7 @@ const Image = ({
   const flattenedStyles = useMemo(() => StyleSheet.flatten(style), [style]);
   const width = (flattenedStyles?.width as number) || DEFAULT_IMAGE_SIZE;
   const height = (flattenedStyles?.height as number) || DEFAULT_IMAGE_SIZE;
+  const resizeMode = (flattenedStyles?.resizeMode as ImageResizeMode) || 'cover';
 
   const onImageError = useCallback(
     (error: NativeSyntheticEvent<ImageErrorEventData>) => {
@@ -67,8 +70,9 @@ const Image = ({
   return (
     <View style={[styles.imageContainer, style]}>
       <RNImage
-        style={{ width, height }}
+        style={{ width, height, resizeMode }}
         source={source}
+        resizeMode={resizeMode}
         onError={onImageError}
         onLoad={onImageLoad}
         {...props}
