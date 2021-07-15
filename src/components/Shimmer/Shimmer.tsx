@@ -10,9 +10,16 @@ interface Props {
   height: number;
   color?: string;
   backgroundColor?: string;
+  duration?: number;
 }
 
-const Shimmer = ({ width, height, color = 'white', backgroundColor = 'gray' }: Props) => {
+const Shimmer = ({
+  width,
+  height,
+  color = 'white',
+  backgroundColor = 'gray',
+  duration = 700,
+}: Props) => {
   const animatedValue = useRef(new Animated.Value(0)).current;
   const shimmerWidth = width / 2;
 
@@ -20,11 +27,11 @@ const Shimmer = ({ width, height, color = 'white', backgroundColor = 'gray' }: P
     Animated.loop(
       Animated.timing(animatedValue, {
         toValue: width + shimmerWidth,
-        duration: 1000,
+        duration,
         useNativeDriver: true,
       }),
     ).start();
-  }, [animatedValue, shimmerWidth, width]);
+  }, [animatedValue, shimmerWidth, width, duration]);
 
   return (
     <View style={[styles.shimmerContainer, { width, height, backgroundColor }]}>

@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 
 import Button from '../Button';
-import ImageShimmer from '../Shimmer';
+import Shimmer from '../Shimmer';
 import styles, { DEFAULT_IMAGE_SIZE } from './image.style';
 
 interface Props {
@@ -82,7 +82,7 @@ const Image = ({
         (renderLoadIndicator ? (
           renderLoadIndicator()
         ) : (
-          <ImageShimmer
+          <Shimmer
             color={shimmerColor}
             backgroundColor={shimmerBackground}
             {...{ width, height }}
