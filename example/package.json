@@ -8,11 +8,14 @@
     "ios": "react-native run-ios",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "pods": "cd ios && pod install && cd .."
   },
   "dependencies": {
     "react": "^17.0.2",
-    "react-native": "^0.64.2"
+    "react-native": "^0.64.2",
+    "react-native-disco-ui": "file:..",
+    "react-native-svg": "^12.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",

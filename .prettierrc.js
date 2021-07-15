@@ -1,5 +1,15 @@
 module.exports = {
-  jsxSingleQuote: true,
-  semi: false,
+  printWidth: 100,
+  tabWidth: 2,
   singleQuote: true,
-}
+  trailingComma: 'all',
+  arrowParens: 'avoid',
+  overrides: [
+    {
+      files: '*.json',
+      options: {
+        printWidth: 999999,
+      },
+    },
+  ],
+};
