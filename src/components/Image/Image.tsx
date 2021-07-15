@@ -1,4 +1,5 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import * as React from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import {
   Image as RNImage,
   ImageErrorEventData,
@@ -12,8 +13,8 @@ import {
 } from 'react-native';
 
 import Button from '../Button';
+import ImageShimmer from '../Shimmer';
 import styles, { DEFAULT_IMAGE_SIZE } from './image.style';
-import ImageShimmer from './ImageShimmer';
 
 interface Props {
   source: number | { uri: string };

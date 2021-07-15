@@ -6,6 +6,7 @@
     "lib": ["ESNext"],
     "module": "CommonJS",
     "noEmitOnError": true,
+    "allowSyntheticDefaultImports": true,
     "outDir": "./lib",
     "skipLibCheck": true,
     "sourceMap": true,

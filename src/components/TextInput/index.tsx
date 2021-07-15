@@ -1,4 +1,5 @@
-import React, { Fragment, memo, useMemo, useState } from 'react'
+import * as React from 'react';
+import { Fragment, memo, useMemo, useState } from 'react';
 import {
   Text,
   TextInput as RNTextInput,
@@ -7,40 +8,40 @@ import {
   TextStyle,
   View,
   ViewStyle,
-} from 'react-native'
+} from 'react-native';
 
-import Button from '../Button'
-import styles from './textInput.style'
+import Button from '../Button';
+import styles from './textInput.style';
 
 interface Props extends TextInputProps {
   // Title props
-  title?: string
-  titleStyle?: TextStyle
-  titleProps?: TextProps
+  title?: string;
+  titleStyle?: TextStyle;
+  titleProps?: TextProps;
   // TextInput props
-  style?: ViewStyle
-  getRef?: (e: RNTextInput | null) => void
-  isPassword: boolean
-  isSecureTextEntry?: boolean
+  style?: ViewStyle;
+  getRef?: (e: RNTextInput | null) => void;
+  isPassword: boolean;
+  isSecureTextEntry?: boolean;
   // Error props
-  errorInputStyle?: ViewStyle
-  errorTitle?: string
-  errorTitleStyle?: TextStyle
-  errorTitleProps?: TextProps
-  hasError?: boolean
+  errorInputStyle?: ViewStyle;
+  errorTitle?: string;
+  errorTitleStyle?: TextStyle;
+  errorTitleProps?: TextProps;
+  hasError?: boolean;
   // Show Password props
-  showPasswordButton?: boolean
-  showPasswordButtonStyle?: ViewStyle
-  showPasswordTitle?: string
-  showPasswordTitleStyle?: TextStyle
-  hidePasswordTitle?: string
-  renderShowPasswordContent?: () => React.ReactNode
-  renderHidePasswordContent?: () => React.ReactNode
+  showPasswordButton?: boolean;
+  showPasswordButtonStyle?: ViewStyle;
+  showPasswordTitle?: string;
+  showPasswordTitleStyle?: TextStyle;
+  hidePasswordTitle?: string;
+  renderShowPasswordContent?: () => React.ReactNode;
+  renderHidePasswordContent?: () => React.ReactNode;
   // Additional props
-  containerStyle?: ViewStyle
-  renderBorderView?: () => React.ReactNode
-  renderLeftContent?: () => React.ReactNode
-  renderRightContent?: () => React.ReactNode
+  containerStyle?: ViewStyle;
+  renderBorderView?: () => React.ReactNode;
+  renderLeftContent?: () => React.ReactNode;
+  renderRightContent?: () => React.ReactNode;
 }
 
 const TextInput = ({
@@ -74,12 +75,12 @@ const TextInput = ({
   renderHidePasswordContent,
   ...props
 }: Props) => {
-  const [isSecureText, setIsSecureText] = useState<boolean>(isPassword)
+  const [isSecureText, setIsSecureText] = useState<boolean>(isPassword);
 
   const Container = useMemo(
     () => (showPasswordButton || containerStyle ? View : Fragment),
-    [containerStyle, showPasswordButton]
-  )
+    [containerStyle, showPasswordButton],
+  );
 
   const defaultContainerStyle = useMemo(
     () => ({
@@ -89,8 +90,8 @@ const TextInput = ({
           }
         : undefined),
     }),
-    [containerStyle]
-  )
+    [containerStyle],
+  );
 
   return (
     <>
@@ -137,7 +138,7 @@ const TextInput = ({
         </Text>
       )}
     </>
-  )
-}
+  );
+};
 
-export default memo(TextInput)
+export default memo(TextInput);

@@ -1,8 +1,9 @@
-import React, { memo, useEffect, useRef } from 'react';
+import * as React from 'react';
+import { memo, useEffect, useRef } from 'react';
 import { Animated, View } from 'react-native';
 import Svg, { Defs, LinearGradient, Rect, Stop } from 'react-native-svg';
 
-import styles from './image.style';
+import styles from '../Image/image.style';
 
 interface Props {
   width: number;
