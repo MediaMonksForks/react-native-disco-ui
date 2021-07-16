@@ -1,4 +1,7 @@
-# React Native Disco UI
+![React Native Disco UI](banner.gif)
+
+[![npm version](https://badge.fury.io/js/react-native-disco-ui.svg)](https://badge.fury.io/js/react-native-disco-ui)
+
 The Greatest UI Kit For React Native. 
 
 ![Preview GIF](preview.gif)
