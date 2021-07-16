@@ -13,16 +13,19 @@ import {
 import styles from './button.style';
 
 interface Props extends PressableProps {
-  style: ViewStyle;
+  style?: ViewStyle;
   title?: string;
   titleProps?: TextProps;
   enableRipple?: boolean;
   disabled?: boolean;
   isLoading?: boolean;
+  isListItem?: boolean;
   androidRipple?: null | PressableAndroidRippleConfig | undefined;
   onButtonPressedStyle?: (pressed: boolean) => ViewStyle;
   titleStyle?: TextStyle;
   children?: React.ReactNode;
+  onPressIn: () => void;
+  onPressOut: () => void;
 }
 
 const defaultButtonPressedStyle = (pressed: boolean) => ({
@@ -35,6 +38,7 @@ const Button = ({
   style,
   children,
   isLoading,
+  isListItem,
   disabled,
   androidRipple,
   enableRipple = true,
@@ -60,6 +64,8 @@ const Button = ({
   return (
     <Pressable
       style={pressableStyle}
+      // @ts-ignore
+      unstable_pressDelay={isListItem ? 400 : undefined}
       disabled={isLoading || disabled}
       android_ripple={enableRipple ? androidRipple || defaultRipple : null}
       {...props}
