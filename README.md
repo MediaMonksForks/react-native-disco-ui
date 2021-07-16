@@ -5,7 +5,12 @@ The Greatest UI Kit For React Native.
 
 ### Installation
 ```
-yarn add react-native-disco-ui react-native-svg
+yarn add react-native-disco-ui
+```
+
+You will also need the following:
+```
+yarn add react-native-svg react-native-reanimated react-native-gesture-handler
 ```
 
 ### Usage
