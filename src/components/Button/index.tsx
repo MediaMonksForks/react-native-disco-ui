@@ -24,8 +24,6 @@ interface Props extends PressableProps {
   onButtonPressedStyle?: (pressed: boolean) => ViewStyle;
   titleStyle?: TextStyle;
   children?: React.ReactNode;
-  onPressIn: () => void;
-  onPressOut: () => void;
 }
 
 const defaultButtonPressedStyle = (pressed: boolean) => ({
