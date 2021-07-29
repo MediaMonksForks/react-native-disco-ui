@@ -13,7 +13,7 @@ yarn add react-native-disco-ui
 
 You will also need the following:
 ```
-yarn add react-native-svg react-native-reanimated react-native-gesture-handler
+yarn add react-native-svg react-native-reanimated react-native-gesture-handler mm-carousel
 ```
 
 ### Usage
