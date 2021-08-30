@@ -13,7 +13,7 @@ import {
 import styles from './button.style';
 
 interface Props extends PressableProps {
-  style?: ViewStyle;
+  style?: ViewStyle | ViewStyle[];
   title?: string;
   titleProps?: TextProps;
   enableRipple?: boolean;
@@ -21,8 +21,8 @@ interface Props extends PressableProps {
   isLoading?: boolean;
   isListItem?: boolean;
   androidRipple?: null | PressableAndroidRippleConfig | undefined;
-  onButtonPressedStyle?: (pressed: boolean) => ViewStyle;
-  titleStyle?: TextStyle;
+  onButtonPressedStyle?: (pressed: boolean) => ViewStyle | ViewStyle[];
+  titleStyle?: TextStyle | TextStyle[];
   children?: React.ReactNode;
 }
 

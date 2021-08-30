@@ -11,8 +11,8 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import { Button } from 'react-native-disco-ui';
 
+import Button from '../Button';
 import Shimmer from '../Shimmer';
 import styles, { DEFAULT_IMAGE_SIZE } from './imageBackground.style';
 
@@ -82,7 +82,8 @@ const ImageBackground = ({
         onError={onImageError}
         onLoad={onImageLoad}
         resizeMode={resizeMode}
-        {...props}>
+        {...props}
+      >
         {showShimmer &&
           (renderLoadIndicator ? (
             renderLoadIndicator()
