@@ -27,7 +27,6 @@ interface Props {
   shimmerColor?: string;
   shimmerBackground?: string;
   renderLoadIndicator?: () => void;
-  blurAmount?: number;
 }
 
 const Image = ({
