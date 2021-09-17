@@ -1,9 +1,17 @@
 import React, { useMemo, useState } from 'react';
-import { Dimensions, ScrollView, StatusBar, Text, View } from 'react-native';
+import {
+  Dimensions,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import {
   Button,
   Carousel,
   Image,
+  ImageBackground,
   LoadIndicator,
   TextInput,
 } from 'react-native-disco-ui';
@@ -60,6 +68,14 @@ const App = () => {
               uri: `https://randomuser.me/api/portraits/lego/2.jpg`,
             }}
           />
+          <ImageBackground
+            source={{
+              uri: `https://randomuser.me/api/portraits/lego/4.jpg`,
+            }}
+            style={styles.imageBackground}
+          >
+            <Text style={styles.imageBackgroundOverlay}>Image Background</Text>
+          </ImageBackground>
         </View>
         <Text style={styles.sectionTitle}>{'Button'}</Text>
         <View style={styles.row}>
@@ -82,6 +98,7 @@ const App = () => {
           placeholderTextColor={'rgba(255, 255, 255, 0.75)'}
           titleStyle={styles.inputTitle}
           style={styles.inputText}
+          isPassword={false}
         />
         <TextInput
           title={'Password'}
@@ -105,7 +122,15 @@ const App = () => {
             gapSize={260}
             color={'orange'}
             renderIcon={() => (
-              <View style={{ width: 20, height: 20, borderRadius: 10, borderWidth: 4, backgroundColor: 'white' }} />
+              <View
+                style={{
+                  width: 20,
+                  height: 20,
+                  borderRadius: 10,
+                  borderWidth: 4,
+                  backgroundColor: 'white',
+                }}
+              />
             )}
           />
         </View>
@@ -114,7 +139,7 @@ const App = () => {
   );
 };
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#1c313a',
@@ -160,6 +185,22 @@ const styles = {
     height: 80,
     borderRadius: 80 / 2,
   },
+  imageBackground: {
+    width: 80,
+    height: 80,
+    borderRadius: 6,
+  },
+  imageBackgroundOverlay: {
+    position: 'absolute',
+    bottom: 4,
+    fontSize: 8,
+    textAlign: 'center',
+    alignSelf: 'center',
+    lineHeight: 8,
+    padding: 2,
+    borderRadius: 4,
+    backgroundColor: 'rgba(0,0,0,0.3)',
+  },
   button: {
     height: 50,
     paddingHorizontal: 20,
@@ -189,7 +230,7 @@ const styles = {
   row: {
     marginTop: 28,
     width: '100%',
-    paddingHorizontal: 40,
+    paddingHorizontal: 8,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -209,6 +250,6 @@ const styles = {
     marginBottom: 8,
     color: 'white',
   },
-};
+});
 
 export default App;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useCallback, useMemo, useState } from 'react';
 import {
-  Image as RNImage,
+  ImageBackground as RNImageBackground,
   ImageErrorEventData,
   ImageLoadEventData,
   ImageResizeMode,
@@ -14,11 +14,12 @@ import {
 
 import Button from '../Button';
 import Shimmer from '../Shimmer';
-import styles, { DEFAULT_IMAGE_SIZE } from './image.style';
+import styles, { DEFAULT_IMAGE_SIZE } from './imageBackground.style';
 
 interface Props {
   source: number | { uri: string };
   style?: ViewStyle & ImageStyle;
+  imageStyle?: ViewStyle & ImageStyle;
   isLoading?: boolean;
   onLoad?: (event: NativeSyntheticEvent<ImageLoadEventData>) => void;
   onError?: (error: NativeSyntheticEvent<ImageErrorEventData>) => void;
@@ -27,10 +28,10 @@ interface Props {
   shimmerColor?: string;
   shimmerBackground?: string;
   renderLoadIndicator?: () => void;
-  blurAmount?: number;
+  children: React.ReactNode;
 }
 
-const Image = ({
+const ImageBackground = ({
   source,
   style,
   isLoading,
@@ -41,12 +42,16 @@ const Image = ({
   shimmerColor,
   shimmerBackground,
   renderLoadIndicator,
+  imageStyle,
   ...props
 }: Props) => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [hasError, setHasError] = useState<boolean>(false);
 
-  const flattenedStyles = useMemo(() => StyleSheet.flatten(style), [style]);
+  const flattenedStyles = useMemo(
+    () => StyleSheet.flatten([style, imageStyle]),
+    [style, imageStyle],
+  );
   const width = (flattenedStyles?.width as number) || DEFAULT_IMAGE_SIZE;
   const height = (flattenedStyles?.height as number) || DEFAULT_IMAGE_SIZE;
   const resizeMode = (flattenedStyles?.resizeMode as ImageResizeMode) || 'cover';
@@ -71,36 +76,38 @@ const Image = ({
 
   return (
     <View style={[styles.imageContainer, style]}>
-      <RNImage
-        style={{ width, height, resizeMode }}
+      <RNImageBackground
+        style={{ width, height }}
         source={source}
-        resizeMode={resizeMode}
         onError={onImageError}
         onLoad={onImageLoad}
+        resizeMode={resizeMode}
         {...props}
-      />
-      {showShimmer &&
-        (renderLoadIndicator ? (
-          renderLoadIndicator()
-        ) : (
-          <Shimmer
-            color={shimmerColor}
-            backgroundColor={shimmerBackground}
-            {...{ width, height }}
-          />
-        ))}
-      {hasError &&
-        (renderRetryButton ? (
-          renderRetryButton()
-        ) : (
-          <Button
-            onPress={() => onRetryPress && onRetryPress()}
-            style={styles.retryButton}
-            title={'Error: Tap to retry'}
-          />
-        ))}
+      >
+        {showShimmer &&
+          (renderLoadIndicator ? (
+            renderLoadIndicator()
+          ) : (
+            <Shimmer
+              color={shimmerColor}
+              backgroundColor={shimmerBackground}
+              {...{ width, height }}
+            />
+          ))}
+        {hasError &&
+          (renderRetryButton ? (
+            renderRetryButton()
+          ) : (
+            <Button
+              onPress={() => onRetryPress && onRetryPress()}
+              style={styles.retryButton}
+              title={'Error: Tap to retry'}
+            />
+          ))}
+        {!hasError && !showShimmer && <>{props.children}</>}
+      </RNImageBackground>
     </View>
   );
 };
 
-export default Image;
+export default ImageBackground;
