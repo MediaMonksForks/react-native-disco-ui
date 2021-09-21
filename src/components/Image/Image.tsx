@@ -18,7 +18,7 @@ import styles, { DEFAULT_IMAGE_SIZE } from './image.style';
 
 interface Props {
   source: number | { uri: string };
-  style?: ViewStyle & ImageStyle;
+  style?: ViewStyle & ImageStyle & ViewStyle[] & ImageStyle[];
   isLoading?: boolean;
   onLoad?: (event: NativeSyntheticEvent<ImageLoadEventData>) => void;
   onError?: (error: NativeSyntheticEvent<ImageErrorEventData>) => void;
@@ -27,7 +27,7 @@ interface Props {
   shimmerColor?: string;
   shimmerBackground?: string;
   renderLoadIndicator?: () => void;
-  blurAmount?: number;
+  blurRadius?: number;
 }
 
 const Image = ({
