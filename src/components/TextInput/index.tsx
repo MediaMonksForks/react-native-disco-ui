@@ -13,7 +13,7 @@ import {
 import Button from '../Button';
 import styles from './textInput.style';
 
-interface Props extends TextInputProps {
+export interface DiscoTextInputProps extends TextInputProps {
   // Title props
   title?: string;
   titleStyle?: TextStyle;
@@ -25,6 +25,8 @@ interface Props extends TextInputProps {
   isSecureTextEntry?: boolean;
   // Error props
   errorInputStyle?: ViewStyle;
+  errorContainerStyle?: ViewStyle;
+  renderErrorIcon?: () => React.ReactNode;
   errorTitle?: string;
   errorTitleStyle?: TextStyle;
   errorTitleProps?: TextProps;
@@ -62,6 +64,8 @@ const TextInput = ({
   // Error Props
   hasError,
   errorInputStyle,
+  errorContainerStyle,
+  renderErrorIcon,
   errorTitle,
   errorTitleStyle,
   errorTitleProps,
@@ -74,7 +78,7 @@ const TextInput = ({
   renderShowPasswordContent,
   renderHidePasswordContent,
   ...props
-}: Props) => {
+}: DiscoTextInputProps) => {
   const [isSecureText, setIsSecureText] = useState<boolean>(isPassword);
 
   const Container = useMemo(
@@ -134,9 +138,12 @@ const TextInput = ({
       </Container>
       {renderBorderView && renderBorderView()}
       {hasError && errorTitle && (
-        <Text style={errorTitleStyle} {...errorTitleProps}>
-          {errorTitle}
-        </Text>
+        <View style={errorContainerStyle}>
+          {renderErrorIcon && renderErrorIcon()}
+          <Text style={errorTitleStyle} {...errorTitleProps}>
+            {errorTitle}
+          </Text>
+        </View>
       )}
     </>
   );
