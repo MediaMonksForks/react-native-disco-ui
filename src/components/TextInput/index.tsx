@@ -118,6 +118,7 @@ const TextInput = ({
         {renderRightContent && renderRightContent()}
         {showPasswordButton && (
           <Button
+            androidRipple={{}}
             style={showPasswordButtonStyle || styles.showPasswordButton}
             titleStyle={showPasswordTitleStyle}
             title={

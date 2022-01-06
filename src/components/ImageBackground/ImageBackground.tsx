@@ -29,6 +29,7 @@ interface Props {
   shimmerBackground?: string;
   renderLoadIndicator?: () => void;
   children: React.ReactNode;
+  blurRadius?: number;
 }
 
 const ImageBackground = ({
