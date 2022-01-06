@@ -1,10 +1,9 @@
 {
   "name": "example",
   "version": "0.0.1",
-  "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "compile": "tsc -p .",
+    "compile": "rimraf lib && tsc -p .",
     "ios": "react-native run-ios",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "start": "react-native start",
