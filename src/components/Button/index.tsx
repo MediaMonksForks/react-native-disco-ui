@@ -13,7 +13,7 @@ import {
 import styles from './button.style';
 
 interface Props extends PressableProps {
-  style?: ViewStyle | ViewStyle[];
+  style?: ViewStyle | (ViewStyle | undefined)[];
   title?: string;
   titleProps?: TextProps;
   enableRipple?: boolean;
