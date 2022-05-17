@@ -19,7 +19,7 @@ export interface DiscoTextInputProps extends TextInputProps {
   titleStyle?: TextStyle;
   titleProps?: TextProps;
   // TextInput props
-  style?: ViewStyle;
+  style?: ViewStyle | (ViewStyle | undefined)[];
   getRef?: (e: RNTextInput | null) => void;
   isPassword: boolean;
   isSecureTextEntry?: boolean;

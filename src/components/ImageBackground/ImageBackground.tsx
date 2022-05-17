@@ -18,7 +18,7 @@ import styles, { DEFAULT_IMAGE_SIZE } from './imageBackground.style';
 
 interface Props {
   source: number | { uri: string };
-  style?: ViewStyle & ImageStyle;
+  style?: ViewStyle | ImageStyle | (ViewStyle | undefined)[] | (ImageStyle | undefined)[];
   imageStyle?: ViewStyle & ImageStyle;
   isLoading?: boolean;
   onLoad?: (event: NativeSyntheticEvent<ImageLoadEventData>) => void;
