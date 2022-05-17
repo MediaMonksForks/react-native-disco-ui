@@ -46,7 +46,8 @@ const Image = ({
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [hasError, setHasError] = useState<boolean>(false);
 
-  const flattenedStyles = useMemo(() => StyleSheet.flatten(style), [style]);
+  const flattenedStyles = useMemo(() => StyleSheet.flatten(style), [style]) as ImageStyle &
+    ViewStyle;
   const width = (flattenedStyles?.width as number) || DEFAULT_IMAGE_SIZE;
   const height = (flattenedStyles?.height as number) || DEFAULT_IMAGE_SIZE;
   const resizeMode = (flattenedStyles?.resizeMode as ImageResizeMode) || 'cover';

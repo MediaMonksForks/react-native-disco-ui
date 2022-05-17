@@ -19,7 +19,7 @@ import styles, { DEFAULT_IMAGE_SIZE } from './imageBackground.style';
 interface Props {
   source: number | { uri: string };
   style?: ViewStyle | ImageStyle | (ViewStyle | undefined)[] | (ImageStyle | undefined)[];
-  imageStyle?: ViewStyle & ImageStyle;
+  imageStyle?: ViewStyle | ImageStyle;
   isLoading?: boolean;
   onLoad?: (event: NativeSyntheticEvent<ImageLoadEventData>) => void;
   onError?: (error: NativeSyntheticEvent<ImageErrorEventData>) => void;
@@ -50,7 +50,7 @@ const ImageBackground = ({
   const [hasError, setHasError] = useState<boolean>(false);
 
   const flattenedStyles = useMemo(
-    () => StyleSheet.flatten([style, imageStyle]),
+    () => StyleSheet.flatten([style, imageStyle]) as ImageStyle & ViewStyle,
     [style, imageStyle],
   );
   const width = (flattenedStyles?.width as number) || DEFAULT_IMAGE_SIZE;
