@@ -21,7 +21,7 @@ export interface DiscoTextInputProps extends TextInputProps {
   // TextInput props
   style?: ViewStyle | (ViewStyle | undefined)[];
   getRef?: (e: RNTextInput | null) => void;
-  isPassword: boolean;
+  isPassword?: boolean;
   isSecureTextEntry?: boolean;
   // Error props
   errorInputStyle?: ViewStyle;
@@ -79,7 +79,7 @@ const TextInput = ({
   renderHidePasswordContent,
   ...props
 }: DiscoTextInputProps) => {
-  const [isSecureText, setIsSecureText] = useState<boolean>(isPassword);
+  const [isSecureText, setIsSecureText] = useState<boolean>(!!isPassword);
 
   const Container = useMemo(
     () => (showPasswordButton || containerStyle ? View : Fragment),
