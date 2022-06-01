@@ -5,6 +5,7 @@ import {
   ImageErrorEventData,
   ImageLoadEventData,
   ImageResizeMode,
+  ImageSourcePropType,
   ImageStyle,
   NativeSyntheticEvent,
   StyleSheet,
@@ -17,7 +18,7 @@ import Shimmer from '../Shimmer';
 import styles, { DEFAULT_IMAGE_SIZE } from './imageBackground.style';
 
 interface Props {
-  source: number | { uri: string };
+  source: ImageSourcePropType | { uri: string };
   style?: ViewStyle | ImageStyle | (ViewStyle | undefined)[] | (ImageStyle | undefined)[];
   imageStyle?: ViewStyle | ImageStyle;
   isLoading?: boolean;
