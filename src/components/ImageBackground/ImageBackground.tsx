@@ -8,6 +8,7 @@ import {
   ImageSourcePropType,
   ImageStyle,
   NativeSyntheticEvent,
+  StyleProp,
   StyleSheet,
   View,
   ViewStyle,
@@ -19,8 +20,8 @@ import styles, { DEFAULT_IMAGE_SIZE } from './imageBackground.style';
 
 interface Props {
   source: ImageSourcePropType | { uri: string };
-  style?: ViewStyle | ImageStyle | (ViewStyle | undefined)[] | (ImageStyle | undefined)[];
-  imageStyle?: ViewStyle | ImageStyle;
+  style?: StyleProp<ViewStyle | ImageStyle>;
+  imageStyle?: StyleProp<ViewStyle | ImageStyle>;
   isLoading?: boolean;
   onLoad?: (event: NativeSyntheticEvent<ImageLoadEventData>) => void;
   onError?: (error: NativeSyntheticEvent<ImageErrorEventData>) => void;
