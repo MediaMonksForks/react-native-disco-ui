@@ -1,8 +1,8 @@
-import { Dimensions, StyleSheet } from 'react-native'
+import { Dimensions, StyleSheet } from 'react-native';
 
-const DEFAULT_HEIGHT = 50
-const { width } = Dimensions.get('window')
-const DEFAULT_SHOW_PASSWORD_WIDTH = DEFAULT_HEIGHT * 1.25
+const DEFAULT_HEIGHT = 50;
+const { width } = Dimensions.get('window');
+const DEFAULT_SHOW_PASSWORD_WIDTH = DEFAULT_HEIGHT * 1.25;
 
 export default StyleSheet.create({
   container: {
@@ -27,4 +27,4 @@ export default StyleSheet.create({
     right: 0,
     alignSelf: 'center',
   },
-})
+});
