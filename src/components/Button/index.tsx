@@ -4,6 +4,7 @@ import {
   Pressable,
   PressableAndroidRippleConfig,
   PressableProps,
+  StyleProp,
   Text,
   TextProps,
   TextStyle,
@@ -13,7 +14,7 @@ import {
 import styles from './button.style';
 
 interface Props extends PressableProps {
-  style?: ViewStyle | (ViewStyle | undefined)[];
+  style?: StyleProp<ViewStyle>;
   title?: string;
   titleProps?: TextProps;
   enableRipple?: boolean;
@@ -21,8 +22,8 @@ interface Props extends PressableProps {
   isLoading?: boolean;
   isListItem?: boolean;
   androidRipple?: null | PressableAndroidRippleConfig | undefined;
-  onButtonPressedStyle?: (pressed: boolean) => ViewStyle | ViewStyle[];
-  titleStyle?: TextStyle | TextStyle[];
+  onButtonPressedStyle?: (pressed: boolean) => StyleProp<ViewStyle>;
+  titleStyle?: StyleProp<TextStyle>;
   children?: React.ReactNode;
 }
 
@@ -47,12 +48,8 @@ const Button = ({
   ...props
 }: Props) => {
   const pressableStyle = useCallback(
-    ({ pressed }: { pressed: boolean }) => [
-      {
-        ...(onButtonPressedStyle
-          ? onButtonPressedStyle(pressed)
-          : defaultButtonPressedStyle(pressed)),
-      },
+    ({ pressed }: { pressed: boolean }): StyleProp<ViewStyle> => [
+      onButtonPressedStyle ? onButtonPressedStyle(pressed) : defaultButtonPressedStyle(pressed),
       isLoading || disabled ? { opacity: 0.5 } : {},
       style ? style : styles.container,
     ],

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Fragment, memo, useMemo, useState } from 'react';
 import {
+  StyleProp,
   Text,
   TextInput as RNTextInput,
   TextInputProps,
@@ -16,31 +17,31 @@ import styles from './textInput.style';
 export interface DiscoTextInputProps extends TextInputProps {
   // Title props
   title?: string;
-  titleStyle?: TextStyle;
+  titleStyle?: StyleProp<TextStyle>;
   titleProps?: TextProps;
   // TextInput props
-  style?: ViewStyle | (ViewStyle | undefined)[];
+  style?: StyleProp<ViewStyle>;
   getRef?: (e: RNTextInput | null) => void;
   isPassword?: boolean;
   isSecureTextEntry?: boolean;
   // Error props
-  errorInputStyle?: ViewStyle;
-  errorContainerStyle?: ViewStyle;
+  errorInputStyle?: StyleProp<ViewStyle>;
+  errorContainerStyle?: StyleProp<ViewStyle>;
   renderErrorIcon?: () => React.ReactNode;
   errorTitle?: string;
-  errorTitleStyle?: TextStyle;
+  errorTitleStyle?: StyleProp<TextStyle>;
   errorTitleProps?: TextProps;
   hasError?: boolean;
   // Show Password props
   showPasswordButton?: boolean;
-  showPasswordButtonStyle?: ViewStyle;
+  showPasswordButtonStyle?: StyleProp<ViewStyle>;
   showPasswordTitle?: string;
-  showPasswordTitleStyle?: TextStyle;
+  showPasswordTitleStyle?: StyleProp<TextStyle>;
   hidePasswordTitle?: string;
   renderShowPasswordContent?: () => React.ReactNode;
   renderHidePasswordContent?: () => React.ReactNode;
   // Additional props
-  containerStyle?: ViewStyle;
+  containerStyle?: StyleProp<ViewStyle>;
   renderBorderView?: () => React.ReactNode;
   renderLeftContent?: () => React.ReactNode;
   renderRightContent?: () => React.ReactNode;
